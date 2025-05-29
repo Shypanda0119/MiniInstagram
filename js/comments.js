@@ -26,10 +26,11 @@ export function setupCommentFeature(currentPostIdRef, getPostData, dom, currentU
       `;
 
       // 댓글 작성자 UID가 현재 로그인 유저 UID와 같을 때만 삭제 버튼 생성
-      if (c.uid && currentUserUid && c.uid === currentUserUid) {
+      if (c.userId && currentUserUid && c.userId === currentUserUid()) {
         const deleteBtn = document.createElement("button");
         deleteBtn.textContent = "삭제";
         deleteBtn.dataset.index = idx;
+        deleteBtn.classList.add("del-btn");
         deleteBtn.addEventListener("click", () => {
           deleteComment(idx);
         });
@@ -41,6 +42,8 @@ export function setupCommentFeature(currentPostIdRef, getPostData, dom, currentU
   }
 
   async function deleteComment(index) {
+    const confirmed = confirm("정말로 이 댓글을 삭제하시겠습니까?");
+    if (!confirmed) return;
     const postId = currentPostIdRef();
     if (!postId) return;
 
@@ -51,6 +54,8 @@ export function setupCommentFeature(currentPostIdRef, getPostData, dom, currentU
 
       await patchPost(postId, { comments: JSON.stringify(existing) });
       loadComments(existing);
+
+          alert("댓글이 삭제되었습니다.");
     } catch (err) {
       alert("댓글 삭제 실패");
       console.error(err);
@@ -58,6 +63,7 @@ export function setupCommentFeature(currentPostIdRef, getPostData, dom, currentU
   }
 
   addCommentBtn.addEventListener("click", async () => {
+      console.log("Clicked add comment, currentUserUid:", currentUserUid());
     const postId = currentPostIdRef();
     const text = commentInput.value.trim();
     const author = commentAuthorInput.value.trim() || "익명";
@@ -72,7 +78,7 @@ export function setupCommentFeature(currentPostIdRef, getPostData, dom, currentU
         text,
         author,
         createdAt: new Date().toISOString(),
-        uid: currentUserUid // 댓글 작성자 UID 추가
+        userId: currentUserUid() // 댓글 작성자 UID 추가
       };
 
       const updated = [...existing, newComment];

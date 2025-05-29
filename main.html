@@ -19,17 +19,16 @@
     <button id="tabMyPostsBtn">내 게시물 보기</button> 
   </div>
 
-  <div id="postForm" style="display: flex;">
+  <div id="postForm" style="display: flex; flex-direction: column; gap: 10px; max-width: 400px;">
     <h2>게시물 추가</h2>
     <input id="imageUrlInput" placeholder="사진 URL 입력" autocomplete="off">
+    <img id="previewImage" src="" alt="미리보기 이미지" style="max-width: 100%; display: none; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" />
     <input id="captionInput" placeholder="내용 입력" autocomplete="off">
     <input id="usernameInput" placeholder="유저 이름 입력" autocomplete="off">
     <button id="addBtn">게시물 추가</button>
   </div>
 
   <div id="postList" style="display:none;">
-    <h2>전체 게시물 목록</h2>
-    <button id="loadBtn">목록 불러오기</button>
     <ul id="postsList"></ul>
   </div>
 

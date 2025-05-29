@@ -1,21 +1,17 @@
 :root {
-  --color-primary: #3498db;
-  --color-primary-dark: #2980b9;
-  --color-danger: #e74c3c;
-  --color-danger-dark: #c0392b;
-  --color-success: #27ae60;
-  --color-success-dark: #219150;
-  --color-bg-gradient-start: #833ab4;
-  --color-bg-gradient-middle: #fd1d1d;
-  --color-bg-gradient-end: #fcb045;
-  --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  --color-text: #262626;
+  --color-muted: #8e8e8e;
+  --color-border: #dbdbdb;
+  --color-bg: #fafafa;
+  --color-primary: #0095f6;
+  --font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
 body {
   margin: 0;
   font-family: var(--font-family);
-  background: linear-gradient(135deg, var(--color-bg-gradient-start) 0%, var(--color-bg-gradient-middle) 50%, var(--color-bg-gradient-end) 100%);
-  color: #333;
+  background-color: var(--color-bg);
+  color: var(--color-text);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -33,62 +29,49 @@ body.modal-open {
 #logoutBtn {
   align-self: flex-end;
   margin-bottom: 20px;
-  background-color: var(--color-danger);
-  color: white;
-  border: none;
-  padding: 10px 18px;
+  background-color: transparent;
+  color: var(--color-primary);
   font-weight: 600;
-  border-radius: 8px;
+  border: 1px solid var(--color-primary);
+  padding: 8px 14px;
+  border-radius: 6px;
   cursor: pointer;
-  box-shadow: 0 4px 10px rgba(231, 76, 60, 0.3);
-  transition: background-color 0.3s ease;
+  transition: all 0.2s ease;
 }
-#logoutBtn:hover,
-#logoutBtn:focus {
-  background-color: var(--color-danger-dark);
-  outline: none;
+#logoutBtn:hover {
+  background-color: var(--color-primary);
+  color: white;
 }
 
-/* 탭 버튼 - 통일 & 개선 */
+/* 탭 버튼 */
 .tabs {
   margin-bottom: 20px;
   display: flex;
-  gap: 14px;
+  gap: 16px;
 }
 .tabs button {
-  padding: 12px 26px;
-  font-size: 17px;
-  font-weight: 700;
-  background-color: var(--color-primary);
-  color: white;
+  background: none;
   border: none;
-  border-radius: 14px;
+  border-bottom: 2px solid transparent;
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--color-muted);
   cursor: pointer;
-  box-shadow: 0 3px 8px rgba(52, 152, 219, 0.4);
-  transition: background-color 0.25s ease, box-shadow 0.25s ease;
-  user-select: none;
-}
-.tabs button:hover,
-.tabs button:focus {
-  background-color: var(--color-primary-dark);
-  box-shadow: 0 5px 14px rgba(41, 128, 185, 0.7);
-  outline: none;
+  padding: 6px 12px;
 }
 .tabs button.active {
-  background-color: var(--color-primary-dark);
-  box-shadow: 0 6px 18px rgba(41, 128, 185, 0.9);
-  font-weight: 800;
+  color: var(--color-text);
+  border-bottom: 2px solid var(--color-text);
 }
 
-/* 공통 박스 스타일 */
+/* 공통 박스 */
 #postForm, #postList, #myPostsBox, #storyView {
   width: 100%;
-  max-width: 900px;
-  min-height: 420px;
+  max-width: 600px;
   background: white;
-  border-radius: 16px;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.1);
-  padding: 24px 32px;
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  padding: 20px;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
@@ -98,87 +81,61 @@ body.modal-open {
 #postForm input {
   width: 100%;
   margin-bottom: 10px;
-  padding: 8px 12px;
-  font-size: 16px;
-  border: 1px solid #ccc;
+  padding: 10px 12px;
+  font-size: 14px;
+  border: 1px solid var(--color-border);
   border-radius: 4px;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
   box-sizing: border-box;
+  background: #fff;
 }
 #postForm input:focus {
   outline: none;
   border-color: var(--color-primary);
-  box-shadow: 0 0 8px #a3c8f1;
 }
 
-/* 게시물 추가 버튼 */
-#addBtn {
-  background-color: var(--color-success);
-  color: white;
-  font-weight: 700;
-  border: none;
-  border-radius: 12px;
-  padding: 14px 0;
-  cursor: pointer;
-  font-size: 18px;
-  transition: background-color 0.3s ease;
-}
-#addBtn:hover,
-#addBtn:focus {
-  background-color: var(--color-success-dark);
-  outline: none;
+/* 버튼 공통 */
+button {
+  font-family: var(--font-family);
 }
 
-/* 목록 불러오기 버튼 - 탭 버튼 스타일과 어울리게 조정 */
-#loadBtn {
+/* 추가 버튼 */
+#addBtn, #loadBtn, #addCommentBtn {
   background-color: var(--color-primary);
   color: white;
+  font-weight: 600;
   border: none;
-  padding: 12px 26px;
-  border-radius: 14px;
+  border-radius: 6px;
+  padding: 10px 16px;
   cursor: pointer;
-  font-size: 17px;
-  margin-bottom: 18px;
-  align-self: flex-start;
-  box-shadow: 0 3px 8px rgba(52, 152, 219, 0.4);
-  transition: background-color 0.25s ease, box-shadow 0.25s ease;
-  user-select: none;
+  font-size: 14px;
+  transition: background-color 0.2s ease;
 }
-#loadBtn:hover,
-#loadBtn:focus {
-  background-color: var(--color-primary-dark);
-  box-shadow: 0 5px 14px rgba(41, 128, 185, 0.7);
-  outline: none;
+#addBtn:hover, #loadBtn:hover, #addCommentBtn:hover {
+  background-color: #007ac9;
 }
 
-/* 썸네일 목록 - grid 유지, 카드 비율 유지 */
+/* 썸네일 목록 */
 #postsList, #storyPostsContainer {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-  gap: 14px;
-  list-style: none;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 12px;
   padding: 0;
   margin: 0 auto;
   width: 100%;
-  max-width: 900px;
+  max-width: 600px;
+  list-style: none;
 }
 
-/* 카드 (리스트 아이템) */
-#postsList li,
-#storyPostsContainer li {
+/* 썸네일 카드 */
+#postsList li, #storyPostsContainer li {
   position: relative;
   width: 100%;
-  padding-top: 100%; /* 정사각형 비율 유지 */
-  border-radius: 14px;
+  padding-top: 100%;
   overflow: hidden;
-  box-shadow: 0 3px 10px rgba(0,0,0,0.12);
+  border-radius: 6px;
+  border: 1px solid var(--color-border);
   background-color: white;
   cursor: pointer;
-  transition: transform 0.2s ease;
-}
-#postsList li:hover,
-#storyPostsContainer li:hover {
-  transform: scale(1.05);
 }
 
 /* 썸네일 이미지 */
@@ -189,234 +146,140 @@ body.modal-open {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border-radius: 14px;
-}
-
-/* 썸네일 감싸는 div */
-.thumbnail-wrapper {
-  width: 100%;
-  aspect-ratio: 1 / 1;
-  overflow: hidden;
-  border-radius: 14px 14px 0 0;
 }
 
 /* 모달 */
 .modal {
   position: fixed;
   top: 0; left: 0; right: 0; bottom: 0;
-  background-color: rgba(0,0,0,0.7);
+  background-color: rgba(0,0,0,0.6);
   display: none;
   justify-content: center;
   align-items: center;
   z-index: 9999;
 }
 .modal-content {
+  max-height: 80vh;         /* 최대 높이 제한 */
+  overflow: hidden;         /* 넘치는 모든 방향 내용 숨김 */
   background: white;
-  padding: 28px 36px;
-  border-radius: 18px;
-  max-width: 90vw;
-  max-height: 85vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  overflow: hidden;
-  position: relative;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+  padding: 20px;
+  border-radius: 8px;
+  width: 100%;
+  max-width: 500px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.2);
 }
 .modal-close {
   position: absolute;
-  top: 14px;
-  right: 18px;
-  font-size: 28px;
-  font-weight: bold;
+  top: 10px;
+  right: 14px;
+  font-size: 24px;
   cursor: pointer;
-  color: #333;
-  user-select: none;
-  transition: color 0.3s ease;
-}
-.modal-close:hover,
-.modal-close:focus {
-  color: var(--color-danger);
-  outline: none;
+  color: var(--color-text);
 }
 #modalImage {
   max-width: 100%;
-  max-height: 40vh;
-  border-radius: 12px;
-  margin-bottom: 20px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-  object-fit: contain;
+  border-radius: 4px;
+  margin-bottom: 10px;
 }
 #modalCaption {
-  font-size: 1.1rem;
-  color: #222;
-  margin-bottom: 5px;
-  font-weight: 600;
-  word-break: break-word;
+  font-size: 14px;
+  color: var(--color-text);
+  margin-bottom: 6px;
 }
 #modalUsername {
-  font-size: 0.9rem;
-  color: #666;
-  margin-bottom: 20px;
-  line-height: 1.3;
-  word-break: break-word;
+  font-size: 13px;
+  color: var(--color-muted);
+  margin-bottom: 12px;
 }
 
-/* 댓글 섹션 */
+/* 댓글 */
 #commentSection {
-  width: 100%;
-  border-top: 1px solid #ddd;
-  padding-top: 15px;
-  box-sizing: border-box;
-  flex-grow: 1;
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
+  border-top: 1px solid var(--color-border);
+  padding-top: 12px;
 }
-
-/* 댓글 리스트 스타일 */
 #commentList {
   list-style: none;
-  margin: 0 0 15px 0;
-  padding: 10px 12px;
-  flex-grow: 1;
+  padding: 0;
+  margin: 0 0 12px 0;
+  font-size: 14px;
+  color: var(--color-text);
+  max-height: 200px;
   overflow-y: auto;
-  border: 1.5px solid #ddd;
-  border-radius: 12px;
-  background: #fafafa;
-  font-family: var(--font-family);
-  font-size: 15px;
-  line-height: 1.4;
 }
-
-/* 댓글 한 줄 스타일 */
 #commentList li {
-  padding: 10px 14px;
-  border-bottom: 1px solid #eee;
-  position: relative;
-  word-break: break-word;
-  font-size: 0.95rem;
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
+  padding: 6px 4px;
+  border-bottom: 1px solid var(--color-border);
 }
 #commentList li:last-child {
   border-bottom: none;
 }
-
-/* 작성자 이름과 시간 */
 #commentList strong {
-  color: #333;
-  font-weight: 700;
-  margin-right: 8px;
-  font-size: 1rem;
+  font-weight: 600;
+  margin-right: 6px;
 }
 #commentList small {
-  color: #999;
-  font-size: 0.75rem;
+  color: var(--color-muted);
+  font-size: 12px;
 }
-
-/* 댓글 본문 */
 #commentList p {
-  margin: 0;
-  color: #444;
-  font-size: 0.95rem;
+  margin: 2px 0 0 0;
+  font-size: 14px;
 }
 
-/* 댓글 삭제 버튼 */
-#commentList button {
+/* 댓글 입력 */
+#commentAuthorInput, #commentInput {
+  padding: 10px;
+  font-size: 14px;
+  border-radius: 4px;
+  border: 1px solid var(--color-border);
+  margin-bottom: 10px;
+}
+.modal-comment-delete-btn {
   position: absolute;
-  top: 10px;
-  right: 10px;
-  background: var(--color-danger);
+  top: 6px;
+  right: 6px;
+  background-color: transparent;
+  color: var(--color-primary);
   border: none;
-  color: white;
-  padding: 5px 9px;
-  font-size: 0.75rem;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-#commentList button:hover,
-#commentList button:focus {
-  background-color: var(--color-danger-dark);
-  outline: none;
-}
-
-/* 댓글 입력 폼 (수정) */
-#commentSection > input,
-#commentSection > button {
-  font-family: var(--font-family);
-}
-
-#commentAuthorInput,
-#commentInput {
-  padding: 12px 16px;
-  font-size: 16px;
+  padding: 4px 8px;
   border-radius: 12px;
-  border: 1.5px solid #ccc;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
-  box-sizing: border-box;
-  min-height: 42px;
-  font-family: var(--font-family);
-  outline: none;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 600;
+  opacity: 0.7;
+  transition: background-color 0.3s ease, opacity 0.3s ease, color 0.3s ease;
+  z-index: 10;
 }
 
-#commentAuthorInput {
-  width: 160px;
-  margin-right: 12px;
+.modal-comment-delete-btn:hover {
+  background-color: var(--color-primary);
+  color: white;
+  opacity: 1;
+  box-shadow: 0 2px 6px rgba(0, 149, 246, 0.5);
 }
 
-#commentInput {
-  flex-grow: 1;
-  margin-right: 12px;
+#commentList li {
+  position: relative; /* 버튼이 절대위치일 때 기준이 됨 */
+  padding-right: 50px; /* 오른쪽 공간 확보 */
 }
 
-#commentAuthorInput:focus,
-#commentInput:focus {
-  border-color: var(--color-primary);
-  box-shadow: 0 0 8px #a3c8f1;
-  outline: none;
-}
-
-#addCommentBtn {
-  display: block;
-  margin: 0 auto;
-  max-width: 30%;
+.del-btn {
+  position: absolute;
+  top: 8px;
+  right: 100px; /* 0% 대신 px 단위로 */
   background-color: var(--color-primary);
   color: white;
   border: none;
-  padding: 12px 20px;
-  font-weight: 700;
-  border-radius: 14px;
+  padding: 4px 8px;
+  border-radius: 12px;
   cursor: pointer;
-  font-size: 16px;
-  transition: background-color 0.3s ease;
-  box-shadow: 0 3px 8px rgba(52, 152, 219, 0.6);
-  user-select: none;
+  font-size: 13px;
+  font-weight: 600;
+  opacity: 0.8;
+  transition: background-color 0.3s ease, opacity 0.3s ease;
+  z-index: 10; /* 충분히 큰 값 */
 }
-#addCommentBtn:hover,
-#addCommentBtn:focus {
-  background-color: var(--color-primary-dark);
-  outline: none;
-}
-.delete-btn {
-  position: absolute; /* 위치 고정하려면 li에 relative 필요 */
-  top: 8px;
-  right: 8px;
-  background-color: #e74c3c; /* 빨간색 */
-  color: white;
-  border: none;
-  border-radius: 6px;
-  padding: 5px 10px;
-  font-weight: bold;
-  cursor: pointer;
-  opacity: 0.9;
-  z-index: 100;
-  user-select: none;
-}
-
-.delete-btn:hover {
+.del-btn:hover {
+  background-color: #007ac9;
   opacity: 1;
-  background-color: #c0392b;
 }

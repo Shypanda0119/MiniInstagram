@@ -171,7 +171,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
           const deleteBtn = document.createElement("button");
           deleteBtn.textContent = "삭제";
-          deleteBtn.classList.add("delete-btn");
+          deleteBtn.classList.add("modal-comment-delete-btn");  // 모달용 클래스로 추가
           deleteBtn.addEventListener("click", async (e) => {
             e.stopPropagation(); // 이미지 클릭 이벤트 방지
             if (confirm("이 게시물을 삭제하시겠습니까?")) {
@@ -213,6 +213,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       setActiveTab("myPosts");
+      loadPosts();
     } catch (error) {
       alert("내 게시물 불러오기 실패: " + error.message);
     }
@@ -303,6 +304,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
   onAuthStateChanged((uid) => {
     currentUserUid = uid;
+
+    if (uid) {
+    setActiveTab("list");
+    loadPosts();
+  }
   });
 
   document.getElementById("logoutBtn").addEventListener("click", async () => {

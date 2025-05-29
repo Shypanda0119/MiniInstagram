@@ -1,0 +1,144 @@
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #833ab4 0%, #fd1d1d 50%, #fcb045 100%); /* 보라 -> 빨강 -> 주황 */
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 40px 20px;
+}
+#logoLoginWrapper {
+  display: flex;
+  gap: 50px;
+  align-items: stretch;
+  background: #fff;
+  border-radius: 24px;
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.15);
+  padding: 40px 50px;
+  max-width: 900px;
+  width: 100%;
+}
+
+#logoBox, #loginUI {
+  width: 360px;
+   background: transparent;
+  padding: 40px 30px;
+  border-radius: 20px;
+  box-shadow: 0 8px 24px rgba(101, 115, 254, 0.2);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+#logoBox:hover, #loginUI:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 18px 36px rgba(101, 115, 254, 0.35);
+}
+
+#logoBox {
+  align-items: center;
+  justify-content: center;
+}
+
+#logoBox h2 {
+  margin-bottom: 24px;
+  color: #444;
+  font-weight: 800;
+  font-size: 2.5rem;
+  letter-spacing: 3px;
+  user-select: none;
+  text-transform: uppercase;
+  font-family: 'Segoe UI Black', sans-serif;
+}
+
+#logoBox img {
+  max-width: 320px;
+  width: 100%;
+  height: auto;
+  box-shadow: none;
+  border-radius: 0;
+  transition: transform 0.3s ease;
+  background-color: transparent;
+  cursor: default;
+}
+
+#logoBox img:hover {
+  transform: scale(1.07);
+}
+
+#loginUI {
+  justify-content: center;
+}
+
+#loginUI h2 {
+  margin-bottom: 30px;
+  font-weight: 700;
+  font-size: 2.2rem;
+  color: #333;
+  letter-spacing: 1.5px;
+  user-select: none;
+  text-align: center;
+  font-family: 'Segoe UI Semibold', sans-serif;
+}
+
+input[type="email"],
+input[type="password"] {
+  width: 100%;
+  padding: 16px 20px;
+  margin-bottom: 20px;
+  border: 2px solid #cbd5f7;
+  border-radius: 14px;
+  font-size: 16px;
+  font-weight: 500;
+  color: #2c3e50;
+  background: #f7f9ff;
+  transition: border-color 0.4s ease, box-shadow 0.4s ease;
+  box-shadow: inset 0 1px 4px rgba(0,0,0,0.05);
+}
+
+#loginUI input[type="email"],
+#loginUI input[type="password"] {
+  background-color: rgba(255, 255, 255, 0.7); /* 흰색 70% 불투명 */
+  border: 1.8px solid #ddd;
+  padding: 12px 15px;
+  margin-bottom: 20px; /* 좀 더 아래 공간 확보 */
+  border-radius: 8px;
+  font-size: 15px;
+  transition: border-color 0.3s ease;
+}
+
+/* 입력 필드 포커스시 강조 */
+#loginUI input[type="email"]:focus,
+#loginUI input[type="password"]:focus {
+  outline: none;
+  border-color: #3498db;
+  box-shadow: 0 0 6px #a3c8f1;
+}
+
+/* 버튼 스타일 */
+#loginUI button {
+  cursor: pointer;
+  background: #3498db;
+  color: white;
+  border: none;
+  padding: 14px 0;
+  font-size: 16px;
+  border-radius: 12px;
+  margin-bottom: 15px; /* 버튼 사이 공간 */
+  font-weight: 600;
+  box-shadow: 0 4px 10px rgba(52, 152, 219, 0.3);
+  transition: background-color 0.25s ease;
+  width: 100%;
+}
+
+#loginUI button:hover {
+  background: #2980b9;
+  box-shadow: 0 6px 14px rgba(41, 128, 185, 0.4);
+}
+
+#loginUI button:active {
+  background: #1c5980;
+}
+

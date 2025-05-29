@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>Mini Instagram</title>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+  <link rel="stylesheet" href="css/style-index.css" />
+  <script type="module" src="js/firebase-init.js"></script>
+  <script type="module" src="js/auth.js"></script>
+  <script type="module" src="js/main.js"></script>
+    <script>
+    const width = 500;
+    const height = 500;
+
+    // 화면(모니터) 기준 가운데 위치 계산
+    const leftPosition = window.screenX + (window.outerWidth - width) / 2;
+    const topPosition = window.screenY + (window.outerHeight - height) / 2;
+
+  window.onload = () => {
+    document.getElementById("signupBtn").addEventListener("click", () => {
+      window.open( "signup.html", "회원가입", `width=${width},height=${height},left=${leftPosition},top=${topPosition}`);
+    });
+  }
+  </script>
+</head>
+<body>
+  <div id="logoLoginWrapper">
+    <div id="logoBox">
+      <h2>Mini Instagram</h2>
+      <img src="img/instagram-logo.png" alt="Mini Instagram Logo">
+    </div>
+
+    <!-- 로그인 UI -->
+    <div id="loginUI">
+      <h2>로그인</h2>
+      <input id="email" type="email" placeholder="이메일" autocomplete="off">
+      <input id="password" type="password" placeholder="비밀번호">
+      <button id="loginBtn">로그인</button>
+      <button id="signupBtn">회원가입</button>
+    </div>
+  </div>
+</body>
+</html>

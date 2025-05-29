@@ -1,0 +1,422 @@
+:root {
+  --color-primary: #3498db;
+  --color-primary-dark: #2980b9;
+  --color-danger: #e74c3c;
+  --color-danger-dark: #c0392b;
+  --color-success: #27ae60;
+  --color-success-dark: #219150;
+  --color-bg-gradient-start: #833ab4;
+  --color-bg-gradient-middle: #fd1d1d;
+  --color-bg-gradient-end: #fcb045;
+  --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-family);
+  background: linear-gradient(135deg, var(--color-bg-gradient-start) 0%, var(--color-bg-gradient-middle) 50%, var(--color-bg-gradient-end) 100%);
+  color: #333;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 20px;
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+
+body.modal-open {
+  overflow: hidden;
+  height: 100vh;
+}
+
+/* 로그아웃 버튼 */
+#logoutBtn {
+  align-self: flex-end;
+  margin-bottom: 20px;
+  background-color: var(--color-danger);
+  color: white;
+  border: none;
+  padding: 10px 18px;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(231, 76, 60, 0.3);
+  transition: background-color 0.3s ease;
+}
+#logoutBtn:hover,
+#logoutBtn:focus {
+  background-color: var(--color-danger-dark);
+  outline: none;
+}
+
+/* 탭 버튼 - 통일 & 개선 */
+.tabs {
+  margin-bottom: 20px;
+  display: flex;
+  gap: 14px;
+}
+.tabs button {
+  padding: 12px 26px;
+  font-size: 17px;
+  font-weight: 700;
+  background-color: var(--color-primary);
+  color: white;
+  border: none;
+  border-radius: 14px;
+  cursor: pointer;
+  box-shadow: 0 3px 8px rgba(52, 152, 219, 0.4);
+  transition: background-color 0.25s ease, box-shadow 0.25s ease;
+  user-select: none;
+}
+.tabs button:hover,
+.tabs button:focus {
+  background-color: var(--color-primary-dark);
+  box-shadow: 0 5px 14px rgba(41, 128, 185, 0.7);
+  outline: none;
+}
+.tabs button.active {
+  background-color: var(--color-primary-dark);
+  box-shadow: 0 6px 18px rgba(41, 128, 185, 0.9);
+  font-weight: 800;
+}
+
+/* 공통 박스 스타일 */
+#postForm, #postList, #myPostsBox, #storyView {
+  width: 100%;
+  max-width: 900px;
+  min-height: 420px;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+  padding: 24px 32px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 입력 필드 */
+#postForm input {
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 8px 12px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  box-sizing: border-box;
+}
+#postForm input:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 8px #a3c8f1;
+}
+
+/* 게시물 추가 버튼 */
+#addBtn {
+  background-color: var(--color-success);
+  color: white;
+  font-weight: 700;
+  border: none;
+  border-radius: 12px;
+  padding: 14px 0;
+  cursor: pointer;
+  font-size: 18px;
+  transition: background-color 0.3s ease;
+}
+#addBtn:hover,
+#addBtn:focus {
+  background-color: var(--color-success-dark);
+  outline: none;
+}
+
+/* 목록 불러오기 버튼 - 탭 버튼 스타일과 어울리게 조정 */
+#loadBtn {
+  background-color: var(--color-primary);
+  color: white;
+  border: none;
+  padding: 12px 26px;
+  border-radius: 14px;
+  cursor: pointer;
+  font-size: 17px;
+  margin-bottom: 18px;
+  align-self: flex-start;
+  box-shadow: 0 3px 8px rgba(52, 152, 219, 0.4);
+  transition: background-color 0.25s ease, box-shadow 0.25s ease;
+  user-select: none;
+}
+#loadBtn:hover,
+#loadBtn:focus {
+  background-color: var(--color-primary-dark);
+  box-shadow: 0 5px 14px rgba(41, 128, 185, 0.7);
+  outline: none;
+}
+
+/* 썸네일 목록 - grid 유지, 카드 비율 유지 */
+#postsList, #storyPostsContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 14px;
+  list-style: none;
+  padding: 0;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 900px;
+}
+
+/* 카드 (리스트 아이템) */
+#postsList li,
+#storyPostsContainer li {
+  position: relative;
+  width: 100%;
+  padding-top: 100%; /* 정사각형 비율 유지 */
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.12);
+  background-color: white;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+#postsList li:hover,
+#storyPostsContainer li:hover {
+  transform: scale(1.05);
+}
+
+/* 썸네일 이미지 */
+#postsList li img,
+#storyPostsContainer li img {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 14px;
+}
+
+/* 썸네일 감싸는 div */
+.thumbnail-wrapper {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  border-radius: 14px 14px 0 0;
+}
+
+/* 모달 */
+.modal {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-color: rgba(0,0,0,0.7);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+.modal-content {
+  background: white;
+  padding: 28px 36px;
+  border-radius: 18px;
+  max-width: 90vw;
+  max-height: 85vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+}
+.modal-close {
+  position: absolute;
+  top: 14px;
+  right: 18px;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+  color: #333;
+  user-select: none;
+  transition: color 0.3s ease;
+}
+.modal-close:hover,
+.modal-close:focus {
+  color: var(--color-danger);
+  outline: none;
+}
+#modalImage {
+  max-width: 100%;
+  max-height: 40vh;
+  border-radius: 12px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  object-fit: contain;
+}
+#modalCaption {
+  font-size: 1.1rem;
+  color: #222;
+  margin-bottom: 5px;
+  font-weight: 600;
+  word-break: break-word;
+}
+#modalUsername {
+  font-size: 0.9rem;
+  color: #666;
+  margin-bottom: 20px;
+  line-height: 1.3;
+  word-break: break-word;
+}
+
+/* 댓글 섹션 */
+#commentSection {
+  width: 100%;
+  border-top: 1px solid #ddd;
+  padding-top: 15px;
+  box-sizing: border-box;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* 댓글 리스트 스타일 */
+#commentList {
+  list-style: none;
+  margin: 0 0 15px 0;
+  padding: 10px 12px;
+  flex-grow: 1;
+  overflow-y: auto;
+  border: 1.5px solid #ddd;
+  border-radius: 12px;
+  background: #fafafa;
+  font-family: var(--font-family);
+  font-size: 15px;
+  line-height: 1.4;
+}
+
+/* 댓글 한 줄 스타일 */
+#commentList li {
+  padding: 10px 14px;
+  border-bottom: 1px solid #eee;
+  position: relative;
+  word-break: break-word;
+  font-size: 0.95rem;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+#commentList li:last-child {
+  border-bottom: none;
+}
+
+/* 작성자 이름과 시간 */
+#commentList strong {
+  color: #333;
+  font-weight: 700;
+  margin-right: 8px;
+  font-size: 1rem;
+}
+#commentList small {
+  color: #999;
+  font-size: 0.75rem;
+}
+
+/* 댓글 본문 */
+#commentList p {
+  margin: 0;
+  color: #444;
+  font-size: 0.95rem;
+}
+
+/* 댓글 삭제 버튼 */
+#commentList button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: var(--color-danger);
+  border: none;
+  color: white;
+  padding: 5px 9px;
+  font-size: 0.75rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+#commentList button:hover,
+#commentList button:focus {
+  background-color: var(--color-danger-dark);
+  outline: none;
+}
+
+/* 댓글 입력 폼 (수정) */
+#commentSection > input,
+#commentSection > button {
+  font-family: var(--font-family);
+}
+
+#commentAuthorInput,
+#commentInput {
+  padding: 12px 16px;
+  font-size: 16px;
+  border-radius: 12px;
+  border: 1.5px solid #ccc;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  box-sizing: border-box;
+  min-height: 42px;
+  font-family: var(--font-family);
+  outline: none;
+}
+
+#commentAuthorInput {
+  width: 160px;
+  margin-right: 12px;
+}
+
+#commentInput {
+  flex-grow: 1;
+  margin-right: 12px;
+}
+
+#commentAuthorInput:focus,
+#commentInput:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 8px #a3c8f1;
+  outline: none;
+}
+
+#addCommentBtn {
+  display: block;
+  margin: 0 auto;
+  max-width: 30%;
+  background-color: var(--color-primary);
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  font-weight: 700;
+  border-radius: 14px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+  box-shadow: 0 3px 8px rgba(52, 152, 219, 0.6);
+  user-select: none;
+}
+#addCommentBtn:hover,
+#addCommentBtn:focus {
+  background-color: var(--color-primary-dark);
+  outline: none;
+}
+.delete-btn {
+  position: absolute; /* 위치 고정하려면 li에 relative 필요 */
+  top: 8px;
+  right: 8px;
+  background-color: #e74c3c; /* 빨간색 */
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 5px 10px;
+  font-weight: bold;
+  cursor: pointer;
+  opacity: 0.9;
+  z-index: 100;
+  user-select: none;
+}
+
+.delete-btn:hover {
+  opacity: 1;
+  background-color: #c0392b;
+}

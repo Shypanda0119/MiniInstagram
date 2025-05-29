@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mini Instagram</title>
+  <link rel="stylesheet" href="css/style-main.css" />
+  <script type="module" src="js/firebase-init.js"></script>
+  <script type="module" src="js/auth.js"></script> 
+  <script type="module" src="js/posts.js"></script>
+  <script type="module" src="js/comments.js"></script>
+</head>
+<body>
+  <button id="logoutBtn">로그아웃</button>
+
+  <div class="tabs">
+    <button id="tabAddBtn" class="active">게시물 추가</button>
+    <button id="tabListBtn">게시물 목록</button>
+    <button id="tabMyPostsBtn">내 게시물 보기</button> 
+  </div>
+
+  <div id="postForm" style="display: flex;">
+    <h2>게시물 추가</h2>
+    <input id="imageUrlInput" placeholder="사진 URL 입력" autocomplete="off">
+    <input id="captionInput" placeholder="내용 입력" autocomplete="off">
+    <input id="usernameInput" placeholder="유저 이름 입력" autocomplete="off">
+    <button id="addBtn">게시물 추가</button>
+  </div>
+
+  <div id="postList" style="display:none;">
+    <h2>전체 게시물 목록</h2>
+    <button id="loadBtn">목록 불러오기</button>
+    <ul id="postsList"></ul>
+  </div>
+
+  <!-- 상세보기 모달 -->
+  <div id="modal" class="modal" style="display:none;">
+    <div class="modal-content">
+      <span id="modalClose" class="modal-close">&times;</span>
+      <img id="modalImage" src="" alt="상세 이미지" />
+      <p id="modalCaption"></p>
+      <p id="modalUsername"></p>
+
+      <!-- 댓글 섹션 -->
+      <div id="commentSection" style="width: 90vw; max-width: 600px;">
+        <ul id="commentList"></ul>
+        <input type="text" id="commentAuthorInput" placeholder="작성자 이름" autocomplete="off">
+        <input type="text" id="commentInput" placeholder="댓글 입력" autocomplete="off">
+        <button id="addCommentBtn">댓글 달기</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 내 게시물 보기 영역 -->
+  <div id="storyView" style="display: none;">
+    <ul id="storyPostsContainer"></ul>
+  </div>
+
+</body>
+</html>
